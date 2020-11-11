@@ -13,5 +13,5 @@ jobs:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         TARGET_REPO: CDTRSFE/cdtrsfe.github.io
         TARGET_BRANCH: master
-        BUILD_SCRIPT: npm install && npm run docs:build && mkdir docs/.vuepress/dist/.github && mkdir docs/.vuepress/dist/.github/workflows && cp .github/gitee/mirror.yml  docs/.vuepress/dist/.github/workflows/
-        BUILD_DIR: docs/.vuepress/dist/
+        BUILD_SCRIPT: npm install && npm run build && mkdir blogs/.vuepress/dist/.github && mkdir blogs/.vuepress/dist/.github/workflows && cp .github/gitee/mirror.yml  blogs/.vuepress/dist/.github/workflows/
+        BUILD_DIR: blogs/.vuepress/dist/
