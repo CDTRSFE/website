@@ -11,6 +11,7 @@ sidebar: false
 - [通过axios-mock-adapter做接口模拟](2020-10-10-axios-mock-adapter)
 - [将错误代码提交到远程后的解决方式](2020-10-08-git-error-push-resolve)
 - [如何打造一个静态博客](2020-11-12-how-to-write-and-deploy-cms)
+- [如何规范Git工作流](2020-11-12-git-work-flow)
 
 </BlogList>
 
