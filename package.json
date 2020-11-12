@@ -4,13 +4,15 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "vuepress dev blogs",
-    "build": "vuepress build blogs"
+    "dev": "vuepress dev posts",
+    "build": "vuepress build posts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@vuepress/plugin-medium-zoom": "^1.7.1",
+    "node-sass": "^5.0.0",
+    "sass-loader": "^10.1.0",
     "vuepress": "^1.7.1"
   }
 }
