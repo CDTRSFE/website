@@ -33,6 +33,5 @@
       }
    }
 ```
-1. 在命令行窗口中执行该脚本![](https://raw.githubusercontent.com/2446505739/pic_git/master/img/20201202135727.jpg)
-2. 在命令行中执行该脚本
+2. 在命令行窗口中执行该脚本![](https://raw.githubusercontent.com/2446505739/pic_git/master/img/20201202135727.jpg)
 3. 在chrome浏览器中打开[chrome://inspect](chrome://inspect)，点击地址旁的inspect即可打开调试界面![](https://raw.githubusercontent.com/2446505739/pic_git/master/img/20201202172817.jpg)
