@@ -12,5 +12,6 @@ module.exports = {
   },
   plugins: [
     '@vuepress/medium-zoom',
+    'demo-code'
   ]
 }

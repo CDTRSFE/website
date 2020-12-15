@@ -7,6 +7,7 @@ sidebar: false
 ### :date: 2020-12
 :::
 
+- [如何让 flex item 平分空间](2020-12-15-how-flex-work)
 - [npm cli工具调试](2020-12-02-npm-cli-debug)
 - [微前端框架乾坤接入指南](2020-12-02-microfrontend-guide)
 
