@@ -154,7 +154,7 @@ In general, the content-based minimum size of a flex item is the smaller of its 
 - a1 和 b1 的 flex-basis 为 0
 - 剩余空间为 `400 - 0` 分配到 a1 和 b1 的宽度均为 200px
 - a1 的最终宽度 = 0 + 200px = 325px
-- 由于 a1 本身有 min-with 300px，大于 200px，所以把 a1 重置为 300px
+- 由于 a1 本身有 min-width 300px，大于 200px，所以把 a1 重置为 300px
 - b1 = 400 - 300 = 100px
 
 为了验证上面的猜想，我们可以改动一下代码
@@ -197,7 +197,7 @@ In general, the content-based minimum size of a flex item is the smaller of its 
 - a1 的 flex-basis 为 250， b1 的 flex-basis 为 0
 - 剩余空间为 `400 - 0 - 250 = 150` 分配到 a1 和 b1 的宽度均为 150 / 2 = 75px
 - a1 的最终宽度 = 250 + 75 = 325px
-- 由于 a1 本身有 min-with 300px，但是小于 325，所以忽略
+- 由于 a1 本身有 min-width 300px，但是小于 325，所以忽略
 - b1 = 400 - 325 = 75px
 
 当然也可以把 flex-basis 换成 width，因为在没有设置 flex-basis 的情况下，默认等于width
@@ -287,7 +287,7 @@ min-width 只是限制 flex item 的最终宽度，而没有参与到剩余空�
 </style>
 :::
 
-当然可以设置 `width: 0` 因为根据上面的 min-width 计算规则，手动指定了 with 的值就会取和他内容宽度相比的最小值，也就是 0
+当然可以设置 `width: 0` 因为根据上面的 min-width 计算规则，手动指定了 width 的值就会取和他内容宽度相比的最小值，也就是 0
 
 ::: demo
 <template>
@@ -357,3 +357,101 @@ min-width 只是限制 flex item 的最终宽度，而没有参与到剩余空�
 </style>
 :::
 
+
+如果有多个 flex item 呢
+
+::: demo
+<template>
+  <div class="outer-14">
+      <div class="a1"></div>
+      <div class="a2"></div>
+      <div class="a3"></div>
+  </div>
+</template>
+<style>
+  .outer-14 {
+    width: 400px;
+    display: flex;
+  }
+  .outer-14 .a1 {
+    background: red;
+    height: 100px;
+    flex-grow: 1;
+    flex-basis: 200px;
+    min-width: 250px;
+  }
+  .outer-14 .a2 {
+    background: blue;
+    height: 100px;
+    flex-grow: 1;
+    flex-basis: 20px;
+  }
+  .outer-14 .a3 {
+    background: green;
+    height: 100px;
+    flex-grow: 1;
+    flex-basis: 0;
+  }
+</style>
+:::
+
+推导一下过程
+- 剩余空间 = (400 - 200 - 20 - 0) = 180
+- 3个 item 平分 180 / 3 = 60
+- a1 = 60 + 200 = 260 > 250 取 260
+- a2 = 60 + 20 = 80
+- a3 = 60
+
+如果 a1 算出来的宽度比 min-width 小呢？
+
+::: demo
+<template>
+  <div class="outer-15">
+      <div class="a1"></div>
+      <div class="a2"></div>
+      <div class="a3"></div>
+  </div>
+</template>
+<style>
+  .outer-15 {
+    width: 400px;
+    display: flex;
+  }
+  .outer-15 .a1 {
+    background: red;
+    height: 100px;
+    flex-grow: 1;
+    flex-basis: 80px;
+    min-width: 250px;
+  }
+  .outer-15 .a2 {
+    background: blue;
+    height: 100px;
+    flex-grow: 1;
+    flex-basis: 20px;
+  }
+  .outer-15 .a3 {
+    background: green;
+    height: 100px;
+    flex-grow: 1;
+    flex-basis: 0;
+  }
+</style>
+:::
+
+计算过程就变成了
+
+- 剩余空间 = (400 - 80 - 20 - 0) = 300
+- 3个 item 平分 300 / 3 = 100
+- a1 = 100 + 80 = 180 < 250 取 250
+
+到了 a2 这里，a2 = 100 + 20 = 80，那么明显是不对的，因为 a1 已经占用了多余的空间，所以就应该按照剩下的空间（400 - 250）计算了
+
+- 除开a1的剩余空间 = 150 - 20 - 0 = 130
+- a2 和 a3 平分 130 / 2 = 65
+- a2 = 65 + 20 = 85
+- a3 = 65
+
+::: tip
+由此可以得出， flex item 分为两种，一种是 min-width > main width 第二种是 min-width <= main width。 这个时候可以先把第一种item去除，因为他们已经被强制变成min-width宽度了，从容器总宽度剪掉他们的宽度之和，然后剩下的用来计算第二种item的空间分配。
+:::
