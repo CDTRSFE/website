@@ -1,7 +1,7 @@
 ---
 sidebar: false
-title: 如何规范Git工作流
-author: 作者
+title: 如何让 flex item 平分空间
+author: 黄小红
 ---
 
 # 如何让 flex item 平分空间
