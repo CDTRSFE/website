@@ -8,11 +8,10 @@ jobs:
       uses: actions/checkout@master
 
     - name: vuepress-deploy
-      uses: jenkey2011/vuepress-deploy@master
+      uses: bimohxh/vuepress-deploy@master
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         TARGET_REPO: CDTRSFE/cdtrsfe.github.io
         TARGET_BRANCH: master
         BUILD_SCRIPT: npm install && npm run build && mkdir posts/.vuepress/dist/.github && mkdir posts/.vuepress/dist/.github/workflows && cp .github/gitee/mirror.yml  posts/.vuepress/dist/.github/workflows/
         BUILD_DIR: posts/.vuepress/dist/
-        COMMIT_MESSAGE: 'Auto deploy from Github Actions'
