@@ -153,7 +153,7 @@ In general, the content-based minimum size of a flex item is the smaller of its 
 
 - a1 和 b1 的 flex-basis 为 0
 - 剩余空间为 `400 - 0` 分配到 a1 和 b1 的宽度均为 200px
-- a1 的最终宽度 = 0 + 200px = 325px
+- a1 的最终宽度 = 0 + 200px = 200px
 - 由于 a1 本身有 min-width 300px，大于 200px，所以把 a1 重置为 300px
 - b1 = 400 - 300 = 100px
 
